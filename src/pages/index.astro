@@ -1,11 +1,66 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Mock data for your future full-stack projects
+const projects = [
+  {
+    title: "E-Commerce Platform",
+    description: "A full-stack marketplace featuring secure user auth, database persistence, and payment gateway integration.",
+    tags: ["React", "Node.js", "PostgreSQL"],
+    liveLink: "#",
+    githubLink: "#"
+  },
+  {
+    title: "Real-Time Project Dashboard",
+    description: "A Trello-style collaboration tool with drag-and-drop mechanics and live WebSockets data updates.",
+    tags: ["Next.js", "FastAPI", "MongoDB"],
+    liveLink: "#",
+    githubLink: "#"
+  }
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Your Name | Full-Stack Engineer">
+	<main class="max-w-4xl mx-auto px-6 py-12 space-y-16">
+		
+		<section class="space-y-4 pt-12">
+			<h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl">
+				Hi, I'm <span class="text-blue-600">Your Name</span>
+			</h1>
+			<p class="text-xl text-muted-foreground max-w-[600px]">
+				Full-Stack Software Engineer specializing in building robust web applications from database architecture to smooth user interfaces.
+			</p>
+			<div class="flex gap-4 pt-2">
+				<a href="#" class="px-4 py-2 bg-slate-900 text-white rounded-md hover:bg-slate-800 text-sm font-medium">View Resume</a>
+				<a href="#" class="px-4 py-2 border border-slate-200 rounded-md hover:bg-slate-50 text-sm font-medium">GitHub</a>
+			</div>
+		</section>
+
+		<section class="space-y-6">
+			<h2 class="text-2xl font-bold tracking-tight">Featured Projects</h2>
+			<div class="grid md:grid-cols-2 gap-6">
+				{projects.map((project) => (
+					<Card className="flex flex-col justify-between">
+						<CardHeader>
+							<CardTitle>{project.title}</CardTitle>
+							<CardDescription>{project.description}</CardDescription>
+						</CardHeader>
+						<CardContent>
+							<div class="flex flex-wrap gap-2">
+								{project.tags.map((tag) => (
+									<span class="px-2 py-1 bg-slate-100 text-slate-800 text-xs rounded-md font-mono">{tag}</span>
+								))}
+							</div>
+						</CardContent>
+						<CardFooter class="flex gap-4">
+							<a href={project.liveLink} class="text-sm text-blue-600 hover:underline">Live Demo →</a>
+							<a href={project.githubLink} class="text-sm text-muted-foreground hover:underline">Source Code</a>
+						</CardFooter>
+					</Card>
+				))}
+			</div>
+		</section>
+
+	</main>
 </Layout>
