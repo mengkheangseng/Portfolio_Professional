@@ -1,7 +1,14 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import path from 'path';
 
 export default defineConfig({
-  // We removed the old tailwind() integration completely
   integrations: [react()],
+  vite: {
+    resolve: {
+      alias: {
+        '@': path.resolve('./src'),
+      },
+    },
+  },
 });
